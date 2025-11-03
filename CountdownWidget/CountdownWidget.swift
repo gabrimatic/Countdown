@@ -43,19 +43,26 @@ struct CountdownWidgetEntryView: View {
     @Environment(\.widgetFamily) private var family
 
     var body: some View {
+        let referenceDate = Date()
+        let prioritized = Self.prioritizedCountdowns(entry.countdowns, referenceDate: referenceDate)
+        return widgetView(for: prioritized, referenceDate: referenceDate)
+    }
+
+    @ViewBuilder
+    private func widgetView(for countdowns: [CountdownItem], referenceDate: Date) -> some View {
         switch family {
         case .systemSmall:
-            smallView(countdown: entry.countdowns.first)
+            smallView(countdown: countdowns.first, referenceDate: referenceDate)
         case .systemMedium:
-            mediumView(countdowns: entry.countdowns)
+            mediumView(countdowns: countdowns, referenceDate: referenceDate)
         case .systemLarge:
-            largeView(countdowns: entry.countdowns)
+            largeView(countdowns: countdowns, referenceDate: referenceDate)
         default:
-            mediumView(countdowns: entry.countdowns)
+            mediumView(countdowns: countdowns, referenceDate: referenceDate)
         }
     }
 
-    private func smallView(countdown: CountdownItem?) -> some View {
+    private func smallView(countdown: CountdownItem?, referenceDate: Date) -> some View {
         widgetBackground {
             VStack(spacing: 8) {
                 if let countdown {
@@ -63,10 +70,10 @@ struct CountdownWidgetEntryView: View {
                         .font(.headline)
                         .multilineTextAlignment(.center)
                         .lineLimit(3)
-                    Text(primaryLabel(for: countdown))
-                        .font(countdown.daysRemaining > 0 ? .system(size: 44, weight: .semibold, design: .rounded) : .title2)
+                    Text(primaryLabel(for: countdown, referenceDate: referenceDate))
+                        .font(countdown.daysRemaining(relativeTo: referenceDate) > 0 ? .system(size: 44, weight: .semibold, design: .rounded) : .title2)
                         .foregroundStyle(.primary)
-                    Text(countdown.statusDetail)
+                    Text(countdown.statusDetail(relativeTo: referenceDate))
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 } else {
@@ -80,7 +87,7 @@ struct CountdownWidgetEntryView: View {
         }
     }
 
-    private func mediumView(countdowns: [CountdownItem]) -> some View {
+    private func mediumView(countdowns: [CountdownItem], referenceDate: Date) -> some View {
         widgetBackground {
             VStack(alignment: .leading, spacing: 12) {
                 Text("Upcoming")
@@ -90,7 +97,7 @@ struct CountdownWidgetEntryView: View {
                     Text("Add a countdown to see it here.")
                         .foregroundStyle(.secondary)
                 } else {
-                    ForEach(Array(countdowns.prefix(2).enumerated()), id: \.offset) { _, item in
+                    ForEach(Array(countdowns.prefix(2))) { item in
                         HStack(alignment: .center, spacing: 12) {
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(item.title)
@@ -99,15 +106,15 @@ struct CountdownWidgetEntryView: View {
                                 Text(item.date, style: .date)
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
-                                Text(item.relativeDescription)
+                                Text(item.relativeDescription(relativeTo: referenceDate))
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }
                             Spacer()
                             VStack(alignment: .trailing, spacing: 2) {
-                                Text(primaryLabel(for: item))
-                                    .font(item.daysRemaining > 0 ? .title2.weight(.semibold) : .headline)
-                                Text(item.statusDetail)
+                                Text(primaryLabel(for: item, referenceDate: referenceDate))
+                                    .font(item.daysRemaining(relativeTo: referenceDate) > 0 ? .title2.weight(.semibold) : .headline)
+                                Text(item.statusDetail(relativeTo: referenceDate))
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }
@@ -120,7 +127,7 @@ struct CountdownWidgetEntryView: View {
         }
     }
 
-    private func largeView(countdowns: [CountdownItem]) -> some View {
+    private func largeView(countdowns: [CountdownItem], referenceDate: Date) -> some View {
         widgetBackground {
             VStack(alignment: .leading, spacing: 12) {
                 Text("All Countdowns")
@@ -129,7 +136,7 @@ struct CountdownWidgetEntryView: View {
                     Text("Add countdowns in the app to stay on track.")
                         .foregroundStyle(.secondary)
                 } else {
-                    ForEach(Array(countdowns.prefix(4).enumerated()), id: \.offset) { _, item in
+                    ForEach(Array(countdowns.prefix(4))) { item in
                         HStack(alignment: .center, spacing: 12) {
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(item.title)
@@ -138,15 +145,15 @@ struct CountdownWidgetEntryView: View {
                                 Text(item.date, style: .date)
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
-                                Text(item.relativeDescription)
+                                Text(item.relativeDescription(relativeTo: referenceDate))
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }
                             Spacer()
                             VStack(alignment: .trailing, spacing: 2) {
-                                Text(primaryLabel(for: item))
-                                    .font(item.daysRemaining > 0 ? .title2.weight(.semibold) : .headline)
-                                Text(item.statusDetail)
+                                Text(primaryLabel(for: item, referenceDate: referenceDate))
+                                    .font(item.daysRemaining(relativeTo: referenceDate) > 0 ? .title2.weight(.semibold) : .headline)
+                                Text(item.statusDetail(relativeTo: referenceDate))
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }
@@ -160,8 +167,9 @@ struct CountdownWidgetEntryView: View {
         }
     }
 
-    private func primaryLabel(for item: CountdownItem) -> String {
-        item.daysRemaining > 0 ? item.clampedDaysRemaining.description : item.statusLabel
+    private func primaryLabel(for item: CountdownItem, referenceDate: Date) -> String {
+        let remaining = item.daysRemaining(relativeTo: referenceDate)
+        return remaining > 0 ? String(remaining) : item.statusLabel(relativeTo: referenceDate)
     }
 
     @ViewBuilder
@@ -177,6 +185,18 @@ struct CountdownWidgetEntryView: View {
                 content()
             }
         }
+    }
+
+    private static func prioritizedCountdowns(_ countdowns: [CountdownItem], referenceDate: Date) -> [CountdownItem] {
+        guard !countdowns.isEmpty else { return [] }
+        let sorted = countdowns.sorted(by: CountdownItem.displaySort(lhs:rhs:))
+        let upcoming = sorted.filter { !$0.isPast(relativeTo: referenceDate) }
+        let past = sorted.filter { $0.isPast(relativeTo: referenceDate) }
+            .sorted(by: { $0.date > $1.date })
+        if upcoming.isEmpty {
+            return past
+        }
+        return upcoming + past
     }
 }
 

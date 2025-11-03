@@ -9,7 +9,7 @@ enum SharedCountdownRepository {
         guard let data = defaults.data(forKey: storageKey) else { return [] }
         do {
             let decoded = try JSONDecoder().decode([CountdownItem].self, from: data)
-            return decoded.sorted(by: { $0.date < $1.date })
+            return decoded.sorted(by: CountdownItem.displaySort(lhs:rhs:))
         } catch {
             print("Failed to decode countdowns: \(error)")
             return []

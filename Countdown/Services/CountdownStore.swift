@@ -50,7 +50,7 @@ final class CountdownStore: ObservableObject {
     }
 
     func replaceAll(with items: [CountdownItem]) {
-        countdowns = items.sorted(by: { $0.date < $1.date })
+        countdowns = items.sorted(by: CountdownItem.displaySort(lhs:rhs:))
     }
 
     private func load() {
@@ -58,7 +58,7 @@ final class CountdownStore: ObservableObject {
         do {
             let decoded = try JSONDecoder().decode([CountdownItem].self, from: data)
             isRestoring = true
-            countdowns = decoded.sorted(by: { $0.date < $1.date })
+            countdowns = decoded.sorted(by: CountdownItem.displaySort(lhs:rhs:))
         } catch {
             print("Failed to load countdowns: \(error)")
             countdowns = []
@@ -67,7 +67,7 @@ final class CountdownStore: ObservableObject {
 
     private func persist() {
         do {
-            let data = try JSONEncoder().encode(countdowns.sorted(by: { $0.date < $1.date }))
+            let data = try JSONEncoder().encode(countdowns.sorted(by: CountdownItem.displaySort(lhs:rhs:)))
             userDefaults.set(data, forKey: storageKey)
             widgetReloader()
         } catch {
@@ -76,7 +76,7 @@ final class CountdownStore: ObservableObject {
     }
 
     private func reorder() {
-        countdowns.sort(by: { $0.date < $1.date })
+        countdowns.sort(by: CountdownItem.displaySort(lhs:rhs:))
     }
 
     private static func makeWidgetReloader() -> () -> Void {

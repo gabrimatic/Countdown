@@ -13,14 +13,24 @@ struct CountdownItem: Identifiable, Codable, Equatable {
         self.notes = notes
     }
 
-    /// The number of whole days between now and the countdown date.
+    /// The number of whole days between the supplied reference date and the countdown date.
     /// Positive values indicate future dates, negative values indicate past dates.
-    var daysRemaining: Int {
+    func daysRemaining(relativeTo referenceDate: Date) -> Int {
         let calendar = Calendar.current
-        let start = calendar.startOfDay(for: Date())
+        let start = calendar.startOfDay(for: referenceDate)
         let end = calendar.startOfDay(for: date)
         let components = calendar.dateComponents([.day], from: start, to: end)
         return components.day ?? 0
+    }
+
+    /// The number of whole days between now and the countdown date.
+    /// Positive values indicate future dates, negative values indicate past dates.
+    var daysRemaining: Int {
+        daysRemaining(relativeTo: Date())
+    }
+
+    func isPast(relativeTo referenceDate: Date) -> Bool {
+        daysRemaining(relativeTo: referenceDate) < 0
     }
 
     var isPast: Bool {
@@ -32,9 +42,9 @@ struct CountdownItem: Identifiable, Codable, Equatable {
         max(daysRemaining, 0)
     }
 
-    /// A concise label communicating the countdown status.
-    var statusLabel: String {
-        switch daysRemaining {
+    func statusLabel(relativeTo referenceDate: Date) -> String {
+        let remaining = daysRemaining(relativeTo: referenceDate)
+        switch remaining {
         case ..<0:
             return "Done"
         case 0:
@@ -42,32 +52,57 @@ struct CountdownItem: Identifiable, Codable, Equatable {
         case 1:
             return "Tomorrow"
         default:
-            return "\(daysRemaining) days"
+            return "\(remaining) days"
         }
     }
 
-    /// A detailed description for accessibility and secondary labels.
-    var statusDetail: String {
-        switch daysRemaining {
+    /// A concise label communicating the countdown status.
+    var statusLabel: String {
+        statusLabel(relativeTo: Date())
+    }
+
+    func statusDetail(relativeTo referenceDate: Date) -> String {
+        let remaining = daysRemaining(relativeTo: referenceDate)
+        switch remaining {
         case ..<0:
-            let overdue = abs(daysRemaining)
+            let overdue = abs(remaining)
             return overdue == 1 ? "Completed 1 day ago" : "Completed \(overdue) days ago"
         case 0:
             return "Due today"
         case 1:
             return "1 day left"
         default:
-            return "\(daysRemaining) days left"
+            return "\(remaining) days left"
         }
+    }
+
+    /// A detailed description for accessibility and secondary labels.
+    var statusDetail: String {
+        statusDetail(relativeTo: Date())
+    }
+
+    func relativeDescription(relativeTo referenceDate: Date) -> String {
+        CountdownItem.relativeFormatter.localizedString(for: date, relativeTo: referenceDate)
     }
 
     /// Relative description used by widgets and accessibility.
     var relativeDescription: String {
-        CountdownItem.relativeFormatter.localizedString(for: date, relativeTo: Date())
+        relativeDescription(relativeTo: Date())
     }
 
     func updated(date: Date) -> CountdownItem {
         CountdownItem(id: id, title: title, date: date, notes: notes)
+    }
+
+    static func displaySort(lhs: CountdownItem, rhs: CountdownItem) -> Bool {
+        if lhs.date != rhs.date {
+            return lhs.date < rhs.date
+        }
+        let comparison = lhs.title.localizedCaseInsensitiveCompare(rhs.title)
+        if comparison != .orderedSame {
+            return comparison == .orderedAscending
+        }
+        return lhs.id.uuidString < rhs.id.uuidString
     }
 
     private static let relativeFormatter: RelativeDateTimeFormatter = {
