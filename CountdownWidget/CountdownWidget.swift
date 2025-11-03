@@ -18,11 +18,10 @@ struct Provider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<CountdownEntry>) -> Void) {
         let countdowns = loadCountdowns()
-        let entryDate = Date()
-        let nextUpdate = Calendar.current.nextDate(after: entryDate, matching: DateComponents(hour: 0, minute: 1), matchingPolicy: .nextTimePreservingSmallerComponents) ?? entryDate.addingTimeInterval(3600)
-        let entry = CountdownEntry(date: entryDate, countdowns: countdowns)
-        let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
-        completion(timeline)
+        let now = Date()
+        let entries = makeEntries(countdowns: countdowns, startingAt: now)
+        let refreshDate = entries.last?.date.addingTimeInterval(3600) ?? now.addingTimeInterval(3600)
+        completion(Timeline(entries: entries, policy: .after(refreshDate)))
     }
 
     private func loadCountdowns() -> [CountdownItem] {
@@ -36,6 +35,31 @@ struct Provider: TimelineProvider {
             CountdownItem(title: "Past Milestone", date: Date().addingTimeInterval(-86400 * 2))
         ]
     }
+
+    private func makeEntries(countdowns: [CountdownItem], startingAt now: Date) -> [CountdownEntry] {
+        var entries: [CountdownEntry] = []
+        entries.append(CountdownEntry(date: now, countdowns: countdowns))
+
+        let calendar = Calendar.current
+        let startOfToday = calendar.startOfDay(for: now)
+        let maxDays = 14
+        guard var nextMidnight = calendar.date(byAdding: .day, value: 1, to: startOfToday) else {
+            return entries
+        }
+
+        for _ in 0..<maxDays {
+            if nextMidnight <= now {
+                guard let following = calendar.date(byAdding: .day, value: 1, to: nextMidnight) else { break }
+                nextMidnight = following
+                continue
+            }
+            entries.append(CountdownEntry(date: nextMidnight, countdowns: countdowns))
+            guard let following = calendar.date(byAdding: .day, value: 1, to: nextMidnight) else { break }
+            nextMidnight = following
+        }
+
+        return entries
+    }
 }
 
 struct CountdownWidgetEntryView: View {
@@ -43,7 +67,7 @@ struct CountdownWidgetEntryView: View {
     @Environment(\.widgetFamily) private var family
 
     var body: some View {
-        let referenceDate = Date()
+        let referenceDate = entry.date
         let prioritized = Self.prioritizedCountdowns(entry.countdowns, referenceDate: referenceDate)
         return widgetView(for: prioritized, referenceDate: referenceDate)
     }
