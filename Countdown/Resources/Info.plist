@@ -52,10 +52,6 @@
     <dict>
         <key>UIColorName</key>
         <string>AccentColor</string>
-        <key>UIImageName</key>
-        <string>LaunchImage</string>
-        <key>UIImageRespectsSafeAreaInsets</key>
-        <true/>
     </dict>
 </dict>
 </plist>

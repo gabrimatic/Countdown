@@ -101,7 +101,7 @@ struct CountdownWidgetEntryView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 } else {
-                    Text("No countdowns")
+                    Text(NSLocalizedString("widget.empty", comment: "No countdowns"))
                         .font(.headline)
                         .multilineTextAlignment(.center)
                         .foregroundStyle(.secondary)
@@ -114,11 +114,11 @@ struct CountdownWidgetEntryView: View {
     private func mediumView(countdowns: [CountdownItem], referenceDate: Date) -> some View {
         widgetBackground {
             VStack(alignment: .leading, spacing: 12) {
-                Text("Upcoming")
+                Text(NSLocalizedString("widget.upcoming", comment: "Upcoming"))
                     .font(.headline)
                     .foregroundStyle(.primary)
                 if countdowns.isEmpty {
-                    Text("Add a countdown to see it here.")
+                    Text(NSLocalizedString("widget.empty.message", comment: "Add a countdown to see it here."))
                         .foregroundStyle(.secondary)
                 } else {
                     ForEach(Array(countdowns.prefix(2))) { item in
@@ -154,10 +154,10 @@ struct CountdownWidgetEntryView: View {
     private func largeView(countdowns: [CountdownItem], referenceDate: Date) -> some View {
         widgetBackground {
             VStack(alignment: .leading, spacing: 12) {
-                Text("All Countdowns")
+                Text(NSLocalizedString("widget.all", comment: "All Countdowns"))
                     .font(.headline)
                 if countdowns.isEmpty {
-                    Text("Add countdowns in the app to stay on track.")
+                    Text(NSLocalizedString("widget.empty.large", comment: "Add countdowns in the app to stay on track."))
                         .foregroundStyle(.secondary)
                 } else {
                     ForEach(Array(countdowns.prefix(4))) { item in

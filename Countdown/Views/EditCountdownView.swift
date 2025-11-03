@@ -20,14 +20,14 @@ struct EditCountdownView: View {
 
     var body: some View {
         Form {
-            Section("Details") {
-                TextField("Title", text: $title)
+            Section(NSLocalizedString("countdown.edit.details", comment: "Details section")) {
+                TextField(NSLocalizedString("countdown.edit.title", comment: "Title field"), text: $title)
                     .focused($isTitleFocused)
                     .autocorrectionDisabled(true)
                     .textInputAutocapitalization(.words)
-                DatePicker("Date", selection: $date, displayedComponents: [.date])
+                DatePicker(NSLocalizedString("countdown.edit.date", comment: "Date field"), selection: $date, displayedComponents: [.date])
                     .datePickerStyle(.graphical)
-                TextField("Notes", text: $notes, axis: .vertical)
+                TextField(NSLocalizedString("countdown.edit.notes", comment: "Notes field"), text: $notes, axis: .vertical)
                     .lineLimit(3, reservesSpace: true)
                     .textInputAutocapitalization(.sentences)
             }
@@ -38,19 +38,19 @@ struct EditCountdownView: View {
                         store.delete(existingItem)
                         dismiss()
                     } label: {
-                        Label("Delete Countdown", systemImage: "trash")
+                        Label(NSLocalizedString("countdown.edit.delete", comment: "Delete countdown"), systemImage: "trash")
                     }
                 }
             }
         }
-        .navigationTitle(existingItem == nil ? "New Countdown" : "Edit Countdown")
+        .navigationTitle(existingItem == nil ? NSLocalizedString("countdown.edit.new", comment: "New countdown") : NSLocalizedString("countdown.edit.edit", comment: "Edit countdown"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
-                Button("Cancel", role: .cancel) { dismiss() }
+                Button(NSLocalizedString("common.cancel", comment: "Cancel"), role: .cancel) { dismiss() }
             }
             ToolbarItem(placement: .confirmationAction) {
-                Button("Save") {
+                Button(NSLocalizedString("common.save", comment: "Save")) {
                     save()
                 }
                 .disabled(title.trimmingCharacters(in: .whitespaces).isEmpty)

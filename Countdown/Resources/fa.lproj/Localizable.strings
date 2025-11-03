@@ -1,0 +1,50 @@
+/* Common */
+"common.done" = "تمام";
+"common.cancel" = "لغو";
+"common.save" = "ذخیره";
+"common.delete" = "حذف";
+
+/* Navigation */
+"nav.countdowns" = "شمارش‌های معکوس";
+
+/* Settings */
+"settings.title" = "تنظیمات";
+"settings.appearance.header" = "ظاهر";
+"settings.appearance.footer" = "نحوه نمایش برنامه را انتخاب کنید. سیستم از تنظیمات دستگاه شما پیروی می‌کند.";
+"settings.theme.system" = "سیستم";
+"settings.theme.light" = "روشن";
+"settings.theme.dark" = "تیره";
+"settings.language.header" = "زبان";
+"settings.language.title" = "زبان";
+"settings.language.footer" = "برنامه به طور خودکار از تنظیمات زبان دستگاه شما استفاده می‌کند.";
+
+/* Countdown List */
+"countdown.list.empty.title" = "هنوز شمارش معکوسی وجود ندارد";
+"countdown.list.empty.message" = "برای افزودن اولین شمارش معکوس خود، دکمه علامت جمع را بزنید. همه چیز آفلاین باقی می‌ماند و به طور خودکار به‌روزرسانی می‌شود.";
+"countdown.list.view.card" = "نمای کارت";
+"countdown.list.view.list" = "نمای لیست";
+"countdown.list.add" = "افزودن";
+"countdown.list.delete" = "حذف";
+
+/* Edit Countdown */
+"countdown.edit.new" = "شمارش معکوس جدید";
+"countdown.edit.edit" = "ویرایش شمارش معکوس";
+"countdown.edit.details" = "جزئیات";
+"countdown.edit.title" = "عنوان";
+"countdown.edit.date" = "تاریخ";
+"countdown.edit.notes" = "یادداشت‌ها";
+"countdown.edit.delete" = "حذف شمارش معکوس";
+
+/* Countdown Status */
+"countdown.status.today" = "امروز";
+"countdown.status.tomorrow" = "فردا";
+"countdown.status.yesterday" = "دیروز";
+"countdown.status.in_days" = "در %d روز";
+"countdown.status.days_ago" = "%d روز پیش";
+
+/* Widget */
+"widget.empty" = "شمارش معکوسی وجود ندارد";
+"widget.upcoming" = "آینده";
+"widget.all" = "همه شمارش‌های معکوس";
+"widget.empty.message" = "برای مشاهده در اینجا یک شمارش معکوس اضافه کنید.";
+"widget.empty.large" = "برای به‌روز ماندن، شمارش‌های معکوس را در برنامه اضافه کنید.";

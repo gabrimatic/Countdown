@@ -1,0 +1,50 @@
+/* Common */
+"common.done" = "Done";
+"common.cancel" = "Cancel";
+"common.save" = "Save";
+"common.delete" = "Delete";
+
+/* Navigation */
+"nav.countdowns" = "Countdowns";
+
+/* Settings */
+"settings.title" = "Settings";
+"settings.appearance.header" = "APPEARANCE";
+"settings.appearance.footer" = "Choose how the app looks. System follows your device settings.";
+"settings.theme.system" = "System";
+"settings.theme.light" = "Light";
+"settings.theme.dark" = "Dark";
+"settings.language.header" = "LANGUAGE";
+"settings.language.title" = "Language";
+"settings.language.footer" = "The app automatically uses your device's language settings.";
+
+/* Countdown List */
+"countdown.list.empty.title" = "No countdowns yet";
+"countdown.list.empty.message" = "Tap the plus button to add your first countdown. Keep everything offline and up to date automatically.";
+"countdown.list.view.card" = "Card View";
+"countdown.list.view.list" = "List View";
+"countdown.list.add" = "Add";
+"countdown.list.delete" = "Delete";
+
+/* Edit Countdown */
+"countdown.edit.new" = "New Countdown";
+"countdown.edit.edit" = "Edit Countdown";
+"countdown.edit.details" = "Details";
+"countdown.edit.title" = "Title";
+"countdown.edit.date" = "Date";
+"countdown.edit.notes" = "Notes";
+"countdown.edit.delete" = "Delete Countdown";
+
+/* Countdown Status */
+"countdown.status.today" = "Today";
+"countdown.status.tomorrow" = "Tomorrow";
+"countdown.status.yesterday" = "Yesterday";
+"countdown.status.in_days" = "in %d days";
+"countdown.status.days_ago" = "%d days ago";
+
+/* Widget */
+"widget.empty" = "No countdowns";
+"widget.upcoming" = "Upcoming";
+"widget.all" = "All Countdowns";
+"widget.empty.message" = "Add a countdown to see it here.";
+"widget.empty.large" = "Add countdowns in the app to stay on track.";

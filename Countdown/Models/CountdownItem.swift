@@ -45,14 +45,17 @@ struct CountdownItem: Identifiable, Codable, Equatable {
     func statusLabel(relativeTo referenceDate: Date) -> String {
         let remaining = daysRemaining(relativeTo: referenceDate)
         switch remaining {
-        case ..<0:
-            return "Done"
+        case ..<(-1):
+            let overdue = abs(remaining)
+            return String(format: NSLocalizedString("countdown.status.days_ago", comment: "Days ago"), overdue)
+        case -1:
+            return NSLocalizedString("countdown.status.yesterday", comment: "Yesterday")
         case 0:
-            return "Today"
+            return NSLocalizedString("countdown.status.today", comment: "Today")
         case 1:
-            return "Tomorrow"
+            return NSLocalizedString("countdown.status.tomorrow", comment: "Tomorrow")
         default:
-            return "\(remaining) days"
+            return String(format: NSLocalizedString("countdown.status.in_days", comment: "In days"), remaining)
         }
     }
 
@@ -64,15 +67,17 @@ struct CountdownItem: Identifiable, Codable, Equatable {
     func statusDetail(relativeTo referenceDate: Date) -> String {
         let remaining = daysRemaining(relativeTo: referenceDate)
         switch remaining {
-        case ..<0:
+        case ..<(-1):
             let overdue = abs(remaining)
-            return overdue == 1 ? "Completed 1 day ago" : "Completed \(overdue) days ago"
+            return String(format: NSLocalizedString("countdown.status.days_ago", comment: "Days ago"), overdue)
+        case -1:
+            return NSLocalizedString("countdown.status.yesterday", comment: "Yesterday")
         case 0:
-            return "Due today"
+            return NSLocalizedString("countdown.status.today", comment: "Today")
         case 1:
-            return "1 day left"
+            return NSLocalizedString("countdown.status.tomorrow", comment: "Tomorrow")
         default:
-            return "\(remaining) days left"
+            return String(format: NSLocalizedString("countdown.status.in_days", comment: "In days"), remaining)
         }
     }
 

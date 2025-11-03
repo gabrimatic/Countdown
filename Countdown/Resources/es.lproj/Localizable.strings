@@ -1,0 +1,50 @@
+/* Common */
+"common.done" = "Hecho";
+"common.cancel" = "Cancelar";
+"common.save" = "Guardar";
+"common.delete" = "Eliminar";
+
+/* Navigation */
+"nav.countdowns" = "Cuentas Regresivas";
+
+/* Settings */
+"settings.title" = "Ajustes";
+"settings.appearance.header" = "APARIENCIA";
+"settings.appearance.footer" = "Elige cómo se ve la aplicación. Sistema sigue la configuración de tu dispositivo.";
+"settings.theme.system" = "Sistema";
+"settings.theme.light" = "Claro";
+"settings.theme.dark" = "Oscuro";
+"settings.language.header" = "IDIOMA";
+"settings.language.title" = "Idioma";
+"settings.language.footer" = "La aplicación usa automáticamente la configuración de idioma de tu dispositivo.";
+
+/* Countdown List */
+"countdown.list.empty.title" = "Aún no hay cuentas regresivas";
+"countdown.list.empty.message" = "Toca el botón más para agregar tu primera cuenta regresiva. Todo permanece sin conexión y se actualiza automáticamente.";
+"countdown.list.view.card" = "Vista de Tarjeta";
+"countdown.list.view.list" = "Vista de Lista";
+"countdown.list.add" = "Agregar";
+"countdown.list.delete" = "Eliminar";
+
+/* Edit Countdown */
+"countdown.edit.new" = "Nueva Cuenta Regresiva";
+"countdown.edit.edit" = "Editar Cuenta Regresiva";
+"countdown.edit.details" = "Detalles";
+"countdown.edit.title" = "Título";
+"countdown.edit.date" = "Fecha";
+"countdown.edit.notes" = "Notas";
+"countdown.edit.delete" = "Eliminar Cuenta Regresiva";
+
+/* Countdown Status */
+"countdown.status.today" = "Hoy";
+"countdown.status.tomorrow" = "Mañana";
+"countdown.status.yesterday" = "Ayer";
+"countdown.status.in_days" = "en %d días";
+"countdown.status.days_ago" = "hace %d días";
+
+/* Widget */
+"widget.empty" = "Sin cuentas regresivas";
+"widget.upcoming" = "Próximas";
+"widget.all" = "Todas las Cuentas Regresivas";
+"widget.empty.message" = "Agrega una cuenta regresiva para verla aquí.";
+"widget.empty.large" = "Agrega cuentas regresivas en la aplicación para mantenerte al día.";

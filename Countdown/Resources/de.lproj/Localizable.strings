@@ -1,0 +1,50 @@
+/* Common */
+"common.done" = "Fertig";
+"common.cancel" = "Abbrechen";
+"common.save" = "Sichern";
+"common.delete" = "Löschen";
+
+/* Navigation */
+"nav.countdowns" = "Countdowns";
+
+/* Settings */
+"settings.title" = "Einstellungen";
+"settings.appearance.header" = "ERSCHEINUNGSBILD";
+"settings.appearance.footer" = "Wählen Sie das Aussehen der App. System folgt Ihren Geräteeinstellungen.";
+"settings.theme.system" = "System";
+"settings.theme.light" = "Hell";
+"settings.theme.dark" = "Dunkel";
+"settings.language.header" = "SPRACHE";
+"settings.language.title" = "Sprache";
+"settings.language.footer" = "Die App verwendet automatisch Ihre Gerätespracheinstellungen.";
+
+/* Countdown List */
+"countdown.list.empty.title" = "Noch keine Countdowns";
+"countdown.list.empty.message" = "Tippen Sie auf die Plus-Schaltfläche, um Ihren ersten Countdown hinzuzufügen. Alles bleibt offline und wird automatisch aktualisiert.";
+"countdown.list.view.card" = "Kartenansicht";
+"countdown.list.view.list" = "Listenansicht";
+"countdown.list.add" = "Hinzufügen";
+"countdown.list.delete" = "Löschen";
+
+/* Edit Countdown */
+"countdown.edit.new" = "Neuer Countdown";
+"countdown.edit.edit" = "Countdown bearbeiten";
+"countdown.edit.details" = "Details";
+"countdown.edit.title" = "Titel";
+"countdown.edit.date" = "Datum";
+"countdown.edit.notes" = "Notizen";
+"countdown.edit.delete" = "Countdown löschen";
+
+/* Countdown Status */
+"countdown.status.today" = "Heute";
+"countdown.status.tomorrow" = "Morgen";
+"countdown.status.yesterday" = "Gestern";
+"countdown.status.in_days" = "in %d Tagen";
+"countdown.status.days_ago" = "vor %d Tagen";
+
+/* Widget */
+"widget.empty" = "Keine Countdowns";
+"widget.upcoming" = "Bevorstehend";
+"widget.all" = "Alle Countdowns";
+"widget.empty.message" = "Fügen Sie einen Countdown hinzu, um ihn hier zu sehen.";
+"widget.empty.large" = "Fügen Sie Countdowns in der App hinzu, um auf dem Laufenden zu bleiben.";

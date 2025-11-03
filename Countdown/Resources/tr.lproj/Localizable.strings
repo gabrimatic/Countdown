@@ -1,0 +1,50 @@
+/* Common */
+"common.done" = "Tamam";
+"common.cancel" = "İptal";
+"common.save" = "Kaydet";
+"common.delete" = "Sil";
+
+/* Navigation */
+"nav.countdowns" = "Geri Sayımlar";
+
+/* Settings */
+"settings.title" = "Ayarlar";
+"settings.appearance.header" = "GÖRÜNÜM";
+"settings.appearance.footer" = "Uygulamanın nasıl görüneceğini seçin. Sistem, cihaz ayarlarınızı takip eder.";
+"settings.theme.system" = "Sistem";
+"settings.theme.light" = "Açık";
+"settings.theme.dark" = "Koyu";
+"settings.language.header" = "DİL";
+"settings.language.title" = "Dil";
+"settings.language.footer" = "Uygulama otomatik olarak cihazınızın dil ayarlarını kullanır.";
+
+/* Countdown List */
+"countdown.list.empty.title" = "Henüz geri sayım yok";
+"countdown.list.empty.message" = "İlk geri sayımınızı eklemek için artı düğmesine dokunun. Her şey çevrimdışı kalır ve otomatik olarak güncellenir.";
+"countdown.list.view.card" = "Kart Görünümü";
+"countdown.list.view.list" = "Liste Görünümü";
+"countdown.list.add" = "Ekle";
+"countdown.list.delete" = "Sil";
+
+/* Edit Countdown */
+"countdown.edit.new" = "Yeni Geri Sayım";
+"countdown.edit.edit" = "Geri Sayımı Düzenle";
+"countdown.edit.details" = "Detaylar";
+"countdown.edit.title" = "Başlık";
+"countdown.edit.date" = "Tarih";
+"countdown.edit.notes" = "Notlar";
+"countdown.edit.delete" = "Geri Sayımı Sil";
+
+/* Countdown Status */
+"countdown.status.today" = "Bugün";
+"countdown.status.tomorrow" = "Yarın";
+"countdown.status.yesterday" = "Dün";
+"countdown.status.in_days" = "%d gün içinde";
+"countdown.status.days_ago" = "%d gün önce";
+
+/* Widget */
+"widget.empty" = "Geri sayım yok";
+"widget.upcoming" = "Yaklaşan";
+"widget.all" = "Tüm Geri Sayımlar";
+"widget.empty.message" = "Burada görmek için bir geri sayım ekleyin.";
+"widget.empty.large" = "Takipte kalmak için uygulamaya geri sayımlar ekleyin.";

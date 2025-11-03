@@ -2,9 +2,10 @@ import SwiftUI
 
 struct CountdownListView: View {
     @EnvironmentObject private var store: CountdownStore
+    @EnvironmentObject private var settingsStore: AppSettingsStore
     @State private var selectedItem: CountdownItem?
     @State private var isPresentingEditor = false
-    @State private var useCardLayout = true // Toggle between list and card layout
+    @State private var isPresentingSettings = false
 
     var body: some View {
         NavigationStack {
@@ -12,34 +13,26 @@ struct CountdownListView: View {
                 if store.countdowns.isEmpty {
                     EmptyStateView()
                 } else {
-                    if useCardLayout {
-                        cardLayoutView
-                    } else {
-                        listLayoutView
-                    }
+                    cardLayoutView
                 }
             }
-            .navigationTitle("Countdowns")
+            .navigationTitle(NSLocalizedString("nav.countdowns", comment: "Navigation title"))
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        withAnimation(.easeInOut) {
-                            useCardLayout.toggle()
-                        }
+                        isPresentingSettings = true
                     } label: {
-                        Label(
-                            useCardLayout ? "List View" : "Card View",
-                            systemImage: useCardLayout ? "list.bullet" : "square.grid.2x2"
-                        )
-                        .labelStyle(.iconOnly)
+                        Label("Settings", systemImage: "gearshape")
+                            .labelStyle(.iconOnly)
                     }
                 }
+
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         selectedItem = nil
                         isPresentingEditor = true
                     } label: {
-                        Label("Add", systemImage: "plus")
+                        Label(NSLocalizedString("countdown.list.add", comment: "Add countdown"), systemImage: "plus")
                             .labelStyle(.iconOnly)
                     }
                 }
@@ -49,6 +42,11 @@ struct CountdownListView: View {
                     EditCountdownView(item: selectedItem)
                         .environmentObject(store)
                 }
+            }
+            .sheet(isPresented: $isPresentingSettings) {
+                SettingsView()
+                    .environmentObject(settingsStore)
+                    .preferredColorScheme(settingsStore.effectiveColorScheme)
             }
         }
     }
@@ -71,39 +69,14 @@ struct CountdownListView: View {
                                 store.delete(item)
                             }
                         } label: {
-                            Label("Delete", systemImage: "trash")
+                            Label(NSLocalizedString("countdown.list.delete", comment: "Delete"), systemImage: "trash")
                         }
                     }
                 }
             }
             .padding()
         }
-        .background(Color(uiColor: .systemGroupedBackground).ignoresSafeArea())
-        .transition(.opacity)
-    }
-
-    @ViewBuilder
-    private var listLayoutView: some View {
-        List {
-            ForEach(store.countdowns) { item in
-                Button {
-                    selectedItem = item
-                    isPresentingEditor = true
-                } label: {
-                    CountdownRowView(item: item)
-                }
-                .buttonStyle(.plain)
-                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                    Button(role: .destructive) {
-                        store.delete(item)
-                    } label: {
-                        Label("Delete", systemImage: "trash")
-                    }
-                }
-            }
-            .onDelete(perform: store.delete)
-        }
-        .listStyle(.plain)
+        .background(Color("PrimaryBackground").ignoresSafeArea())
         .transition(.opacity)
     }
 }
@@ -112,5 +85,6 @@ struct CountdownListView_Previews: PreviewProvider {
     @MainActor static var previews: some View {
         CountdownListView()
             .environmentObject(CountdownStore.preview)
+            .environmentObject(AppSettingsStore.preview)
     }
 }

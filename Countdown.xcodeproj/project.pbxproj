@@ -13,6 +13,19 @@
 		34CF203C2EB951E700037D93 /* CountdownCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CF20372EB951E700037D93 /* CountdownCard.swift */; };
 		34CF203E2EB9523D00037D93 /* GlassSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CF203D2EB9523D00037D93 /* GlassSettings.swift */; };
 		34CF203F2EB9523D00037D93 /* GlassSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CF203D2EB9523D00037D93 /* GlassSettings.swift */; };
+		34CF20412EB956B700037D93 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CF20402EB956B700037D93 /* SettingsView.swift */; };
+		34CF20532EB95E2800037D93 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34CF20432EB95E2800037D93 /* Localizable.strings */; };
+		34CF20542EB95E2800037D93 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34CF204E2EB95E2800037D93 /* Preview Assets.xcassets */; };
+		34CF20552EB95E2800037D93 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34CF204C2EB95E2800037D93 /* Localizable.strings */; };
+		34CF20562EB95E2800037D93 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34CF20492EB95E2800037D93 /* Localizable.strings */; };
+		34CF20572EB95E2800037D93 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34CF20462EB95E2800037D93 /* Localizable.strings */; };
+		34CF20582EB95E2800037D93 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34CF20512EB95E2800037D93 /* Localizable.strings */; };
+		34CF20592EB95E2800037D93 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34CF20432EB95E2800037D93 /* Localizable.strings */; };
+		34CF205A2EB95E2800037D93 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34CF204E2EB95E2800037D93 /* Preview Assets.xcassets */; };
+		34CF205B2EB95E2800037D93 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34CF204C2EB95E2800037D93 /* Localizable.strings */; };
+		34CF205C2EB95E2800037D93 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34CF20492EB95E2800037D93 /* Localizable.strings */; };
+		34CF205D2EB95E2800037D93 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34CF20462EB95E2800037D93 /* Localizable.strings */; };
+		34CF205E2EB95E2800037D93 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34CF20512EB95E2800037D93 /* Localizable.strings */; };
 		AA0000000000000000003001 /* CountdownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000001001 /* CountdownApp.swift */; };
 		AA0000000000000000003002 /* CountdownItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000001002 /* CountdownItem.swift */; };
 		AA0000000000000000003003 /* CountdownStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000001003 /* CountdownStore.swift */; };
@@ -29,6 +42,8 @@
 		AA0000000000000000003014 /* CountdownWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA0000000000000000001102 /* CountdownWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AA0000000000000000003015 /* CountdownStore+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000001014 /* CountdownStore+Preview.swift */; };
 		AA0000000000000000003016 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000001015 /* LaunchScreenView.swift */; };
+		AA0000000000000000003017 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000001016 /* AppSettings.swift */; };
+		AA0000000000000000003018 /* AppSettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000001017 /* AppSettingsStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +74,13 @@
 		34CF20372EB951E700037D93 /* CountdownCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownCard.swift; sourceTree = "<group>"; };
 		34CF20382EB951E700037D93 /* GlassChrome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassChrome.swift; sourceTree = "<group>"; };
 		34CF203D2EB9523D00037D93 /* GlassSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassSettings.swift; sourceTree = "<group>"; };
+		34CF20402EB956B700037D93 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		34CF20422EB95E2800037D93 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Localizable.strings; sourceTree = "<group>"; };
+		34CF20452EB95E2800037D93 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		34CF20482EB95E2800037D93 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Localizable.strings; sourceTree = "<group>"; };
+		34CF204B2EB95E2800037D93 /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = Localizable.strings; sourceTree = "<group>"; };
+		34CF204E2EB95E2800037D93 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		34CF20502EB95E2800037D93 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = Localizable.strings; sourceTree = "<group>"; };
 		AA0000000000000000001001 /* CountdownApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownApp.swift; sourceTree = "<group>"; };
 		AA0000000000000000001002 /* CountdownItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownItem.swift; sourceTree = "<group>"; };
 		AA0000000000000000001003 /* CountdownStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownStore.swift; sourceTree = "<group>"; };
@@ -74,6 +96,8 @@
 		AA0000000000000000001013 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA0000000000000000001014 /* CountdownStore+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CountdownStore+Preview.swift"; sourceTree = "<group>"; };
 		AA0000000000000000001015 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
+		AA0000000000000000001016 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		AA0000000000000000001017 /* AppSettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsStore.swift; sourceTree = "<group>"; };
 		AA0000000000000000001101 /* Countdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = Countdown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA0000000000000000001102 /* CountdownWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; path = CountdownWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -96,6 +120,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		34CF20442EB95E2800037D93 /* de.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				34CF20432EB95E2800037D93 /* Localizable.strings */,
+			);
+			path = de.lproj;
+			sourceTree = "<group>";
+		};
+		34CF20472EB95E2800037D93 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				34CF20462EB95E2800037D93 /* Localizable.strings */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		34CF204A2EB95E2800037D93 /* es.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				34CF20492EB95E2800037D93 /* Localizable.strings */,
+			);
+			path = es.lproj;
+			sourceTree = "<group>";
+		};
+		34CF204D2EB95E2800037D93 /* fa.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				34CF204C2EB95E2800037D93 /* Localizable.strings */,
+			);
+			path = fa.lproj;
+			sourceTree = "<group>";
+		};
+		34CF204F2EB95E2800037D93 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				34CF204E2EB95E2800037D93 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		34CF20522EB95E2800037D93 /* tr.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				34CF20512EB95E2800037D93 /* Localizable.strings */,
+			);
+			path = tr.lproj;
+			sourceTree = "<group>";
+		};
 		AA0000000000000000002000 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				AA0000000000000000001002 /* CountdownItem.swift */,
+				AA0000000000000000001016 /* AppSettings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -130,6 +203,7 @@
 		AA0000000000000000002102 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				34CF20402EB956B700037D93 /* SettingsView.swift */,
 				34CF20372EB951E700037D93 /* CountdownCard.swift */,
 				34CF20382EB951E700037D93 /* GlassChrome.swift */,
 				AA0000000000000000001004 /* CountdownListView.swift */,
@@ -146,6 +220,7 @@
 			children = (
 				AA0000000000000000001003 /* CountdownStore.swift */,
 				AA0000000000000000001014 /* CountdownStore+Preview.swift */,
+				AA0000000000000000001017 /* AppSettingsStore.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -162,6 +237,12 @@
 		AA0000000000000000002105 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				34CF20442EB95E2800037D93 /* de.lproj */,
+				34CF20472EB95E2800037D93 /* en.lproj */,
+				34CF204A2EB95E2800037D93 /* es.lproj */,
+				34CF204D2EB95E2800037D93 /* fa.lproj */,
+				34CF204F2EB95E2800037D93 /* Preview Content */,
+				34CF20522EB95E2800037D93 /* tr.lproj */,
 				AA0000000000000000001009 /* Assets.xcassets */,
 				AA0000000000000000001010 /* Info.plist */,
 				AA0000000000000000002106 /* Preview Content */,
@@ -180,18 +261,17 @@
 		AA0000000000000000002201 /* CountdownWidget */ = {
 			isa = PBXGroup;
 			children = (
-				AA0000000000000000002202 /*  */,
+				AA0000000000000000002202,
 				AA0000000000000000002203 /* Resources */,
 			);
 			path = CountdownWidget;
 			sourceTree = "<group>";
 		};
-		AA0000000000000000002202 /*  */ = {
+		AA0000000000000000002202 = {
 			isa = PBXGroup;
 			children = (
 				AA0000000000000000001012 /* CountdownWidget.swift */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		AA0000000000000000002203 /* Resources */ = {
@@ -281,6 +361,10 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				tr,
+				es,
+				fa,
 			);
 			mainGroup = AA0000000000000000002000;
 			productRefGroup = AA0000000000000000002301 /* Products */;
@@ -299,6 +383,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA0000000000000000003009 /* Assets.xcassets in Resources */,
+				34CF20592EB95E2800037D93 /* Localizable.strings in Resources */,
+				34CF205A2EB95E2800037D93 /* Preview Assets.xcassets in Resources */,
+				34CF205B2EB95E2800037D93 /* Localizable.strings in Resources */,
+				34CF205C2EB95E2800037D93 /* Localizable.strings in Resources */,
+				34CF205D2EB95E2800037D93 /* Localizable.strings in Resources */,
+				34CF205E2EB95E2800037D93 /* Localizable.strings in Resources */,
 				AA0000000000000000003010 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,6 +397,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34CF20532EB95E2800037D93 /* Localizable.strings in Resources */,
+				34CF20542EB95E2800037D93 /* Preview Assets.xcassets in Resources */,
+				34CF20552EB95E2800037D93 /* Localizable.strings in Resources */,
+				34CF20562EB95E2800037D93 /* Localizable.strings in Resources */,
+				34CF20572EB95E2800037D93 /* Localizable.strings in Resources */,
+				34CF20582EB95E2800037D93 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,9 +417,12 @@
 				34CF20392EB951E700037D93 /* GlassChrome.swift in Sources */,
 				34CF203A2EB951E700037D93 /* CountdownCard.swift in Sources */,
 				AA0000000000000000003002 /* CountdownItem.swift in Sources */,
+				AA0000000000000000003017 /* AppSettings.swift in Sources */,
 				AA0000000000000000003003 /* CountdownStore.swift in Sources */,
+				AA0000000000000000003018 /* AppSettingsStore.swift in Sources */,
 				AA0000000000000000003004 /* CountdownListView.swift in Sources */,
 				AA0000000000000000003005 /* CountdownRowView.swift in Sources */,
+				34CF20412EB956B700037D93 /* SettingsView.swift in Sources */,
 				AA0000000000000000003006 /* EditCountdownView.swift in Sources */,
 				AA0000000000000000003007 /* EmptyStateView.swift in Sources */,
 				34CF203F2EB9523D00037D93 /* GlassSettings.swift in Sources */,
@@ -355,6 +454,49 @@
 			targetProxy = AA0000000000000000004001 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		34CF20432EB95E2800037D93 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				34CF20422EB95E2800037D93 /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		34CF20462EB95E2800037D93 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				34CF20452EB95E2800037D93 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		34CF20492EB95E2800037D93 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				34CF20482EB95E2800037D93 /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		34CF204C2EB95E2800037D93 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				34CF204B2EB95E2800037D93 /* fa */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		34CF20512EB95E2800037D93 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				34CF20502EB95E2800037D93 /* tr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		AA0000000000000000007101 /* Debug */ = {
@@ -472,7 +614,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 7LZDB2TKF7;
 				INFOPLIST_FILE = Countdown/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -494,7 +636,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 7LZDB2TKF7;
 				INFOPLIST_FILE = Countdown/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
