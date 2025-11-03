@@ -28,6 +28,7 @@
 		AA0000000000000000003013 /* SharedCountdownRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000001008 /* SharedCountdownRepository.swift */; };
 		AA0000000000000000003014 /* CountdownWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA0000000000000000001102 /* CountdownWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AA0000000000000000003015 /* CountdownStore+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000001014 /* CountdownStore+Preview.swift */; };
+		AA0000000000000000003016 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000001015 /* LaunchScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		AA0000000000000000001012 /* CountdownWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownWidget.swift; sourceTree = "<group>"; };
 		AA0000000000000000001013 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA0000000000000000001014 /* CountdownStore+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CountdownStore+Preview.swift"; sourceTree = "<group>"; };
+		AA0000000000000000001015 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		AA0000000000000000001101 /* Countdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = Countdown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA0000000000000000001102 /* CountdownWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; path = CountdownWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -134,6 +136,7 @@
 				AA0000000000000000001005 /* CountdownRowView.swift */,
 				AA0000000000000000001006 /* EditCountdownView.swift */,
 				AA0000000000000000001007 /* EmptyStateView.swift */,
+				AA0000000000000000001015 /* LaunchScreenView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				34CF203F2EB9523D00037D93 /* GlassSettings.swift in Sources */,
 				AA0000000000000000003008 /* SharedCountdownRepository.swift in Sources */,
 				AA0000000000000000003015 /* CountdownStore+Preview.swift in Sources */,
+				AA0000000000000000003016 /* LaunchScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
