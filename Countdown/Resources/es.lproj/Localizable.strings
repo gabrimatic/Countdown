@@ -48,3 +48,5 @@
 "widget.all" = "Todas las Cuentas Regresivas";
 "widget.empty.message" = "Agrega una cuenta regresiva para verla aquí.";
 "widget.empty.large" = "Agrega cuentas regresivas en la aplicación para mantenerte al día.";
+"widget.select.countdown" = "Seleccionar cuenta regresiva";
+"widget.select.hint" = "Mantén presionado para editar";

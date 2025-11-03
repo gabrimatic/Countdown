@@ -60,7 +60,6 @@ final class CountdownStore: ObservableObject {
             isRestoring = true
             countdowns = decoded.sorted(by: CountdownItem.displaySort(lhs:rhs:))
         } catch {
-            print("Failed to load countdowns: \(error)")
             countdowns = []
         }
     }
@@ -71,7 +70,6 @@ final class CountdownStore: ObservableObject {
             userDefaults.set(data, forKey: storageKey)
             widgetReloader()
         } catch {
-            print("Failed to save countdowns: \(error)")
         }
     }
 
@@ -82,7 +80,7 @@ final class CountdownStore: ObservableObject {
     private static func makeWidgetReloader() -> () -> Void {
 #if canImport(WidgetKit)
         return {
-            WidgetCenter.shared.reloadAllTimelines()
+            WidgetCenter.shared.reloadTimelines(ofKind: "CountdownWidget")
         }
 #else
         return {}

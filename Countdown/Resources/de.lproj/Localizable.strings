@@ -48,3 +48,5 @@
 "widget.all" = "Alle Countdowns";
 "widget.empty.message" = "Fügen Sie einen Countdown hinzu, um ihn hier zu sehen.";
 "widget.empty.large" = "Fügen Sie Countdowns in der App hinzu, um auf dem Laufenden zu bleiben.";
+"widget.select.countdown" = "Countdown auswählen";
+"widget.select.hint" = "Lange drücken zum Bearbeiten";

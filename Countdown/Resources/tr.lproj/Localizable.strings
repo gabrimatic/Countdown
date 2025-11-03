@@ -48,3 +48,5 @@
 "widget.all" = "Tüm Geri Sayımlar";
 "widget.empty.message" = "Burada görmek için bir geri sayım ekleyin.";
 "widget.empty.large" = "Takipte kalmak için uygulamaya geri sayımlar ekleyin.";
+"widget.select.countdown" = "Geri sayım seç";
+"widget.select.hint" = "Düzenlemek için uzun basın";

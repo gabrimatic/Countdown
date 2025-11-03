@@ -48,3 +48,5 @@
 "widget.all" = "All Countdowns";
 "widget.empty.message" = "Add a countdown to see it here.";
 "widget.empty.large" = "Add countdowns in the app to stay on track.";
+"widget.select.countdown" = "Select a countdown";
+"widget.select.hint" = "Long press to edit";

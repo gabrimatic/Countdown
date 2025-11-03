@@ -1,31 +1,53 @@
 import WidgetKit
 import SwiftUI
+import AppIntents
 
 struct CountdownEntry: TimelineEntry {
     let date: Date
     let countdowns: [CountdownItem]
+    let configuration: CountdownSelectionIntent?
 }
 
-struct Provider: TimelineProvider {
+struct Provider: AppIntentTimelineProvider {
+    typealias Entry = CountdownEntry
+    typealias Intent = CountdownSelectionIntent
+
     func placeholder(in context: Context) -> CountdownEntry {
-        CountdownEntry(date: Date(), countdowns: sampleCountdowns())
+        CountdownEntry(date: Date(), countdowns: sampleCountdowns(), configuration: nil)
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (CountdownEntry) -> Void) {
-        let countdowns = context.isPreview ? sampleCountdowns() : loadCountdowns()
-        completion(CountdownEntry(date: Date(), countdowns: countdowns))
+    func snapshot(for configuration: CountdownSelectionIntent, in context: Context) async -> CountdownEntry {
+        let countdowns = context.isPreview ? sampleCountdowns() : loadCountdowns(for: configuration)
+        return CountdownEntry(date: Date(), countdowns: countdowns, configuration: configuration)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<CountdownEntry>) -> Void) {
-        let countdowns = loadCountdowns()
+    func timeline(for configuration: CountdownSelectionIntent, in context: Context) async -> Timeline<CountdownEntry> {
+        let countdowns = loadCountdowns(for: configuration)
         let now = Date()
-        let entries = makeEntries(countdowns: countdowns, startingAt: now)
+        let entries = makeEntries(countdowns: countdowns, configuration: configuration, startingAt: now)
         let refreshDate = entries.last?.date.addingTimeInterval(3600) ?? now.addingTimeInterval(3600)
-        completion(Timeline(entries: entries, policy: .after(refreshDate)))
+        return Timeline(entries: entries, policy: .after(refreshDate))
     }
 
-    private func loadCountdowns() -> [CountdownItem] {
-        SharedCountdownRepository.loadCountdowns()
+    private func loadCountdowns(for configuration: CountdownSelectionIntent) -> [CountdownItem] {
+        let allCountdowns = SharedCountdownRepository.loadCountdowns()
+
+        // If user selected specific countdown
+        if let selectedID = configuration.countdown?.id {
+            // Try to find the selected countdown
+            if let selectedCountdown = allCountdowns.first(where: { $0.id == selectedID }) {
+                return [selectedCountdown]
+            }
+
+            // Auto-switch: If selected countdown was deleted, show next available
+            // Return first available countdown if any exist
+            if let nextCountdown = allCountdowns.first {
+                return [nextCountdown]
+            }
+        }
+
+        // No countdown selected or no countdowns available
+        return []
     }
 
     private func sampleCountdowns() -> [CountdownItem] {
@@ -36,13 +58,13 @@ struct Provider: TimelineProvider {
         ]
     }
 
-    private func makeEntries(countdowns: [CountdownItem], startingAt now: Date) -> [CountdownEntry] {
+    private func makeEntries(countdowns: [CountdownItem], configuration: CountdownSelectionIntent?, startingAt now: Date) -> [CountdownEntry] {
         var entries: [CountdownEntry] = []
-        entries.append(CountdownEntry(date: now, countdowns: countdowns))
+        entries.append(CountdownEntry(date: now, countdowns: countdowns, configuration: configuration))
 
         let calendar = Calendar.current
         let startOfToday = calendar.startOfDay(for: now)
-        let maxDays = 14
+        let maxDays = 30  // Extended from 14 to 30 days for better reliability
         guard var nextMidnight = calendar.date(byAdding: .day, value: 1, to: startOfToday) else {
             return entries
         }
@@ -53,7 +75,7 @@ struct Provider: TimelineProvider {
                 nextMidnight = following
                 continue
             }
-            entries.append(CountdownEntry(date: nextMidnight, countdowns: countdowns))
+            entries.append(CountdownEntry(date: nextMidnight, countdowns: countdowns, configuration: configuration))
             guard let following = calendar.date(byAdding: .day, value: 1, to: nextMidnight) else { break }
             nextMidnight = following
         }
@@ -101,10 +123,18 @@ struct CountdownWidgetEntryView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 } else {
-                    Text(NSLocalizedString("widget.empty", comment: "No countdowns"))
-                        .font(.headline)
-                        .multilineTextAlignment(.center)
-                        .foregroundStyle(.secondary)
+                    VStack(spacing: 12) {
+                        Image(systemName: "calendar.badge.clock")
+                            .font(.system(size: 32))
+                            .foregroundStyle(.secondary)
+                        Text(NSLocalizedString("widget.select.countdown", comment: "Select a countdown"))
+                            .font(.headline)
+                            .multilineTextAlignment(.center)
+                        Text(NSLocalizedString("widget.select.hint", comment: "Long press to edit"))
+                            .font(.caption)
+                            .foregroundStyle(.tertiary)
+                            .multilineTextAlignment(.center)
+                    }
                 }
             }
             .padding()
@@ -114,13 +144,24 @@ struct CountdownWidgetEntryView: View {
     private func mediumView(countdowns: [CountdownItem], referenceDate: Date) -> some View {
         widgetBackground {
             VStack(alignment: .leading, spacing: 12) {
-                Text(NSLocalizedString("widget.upcoming", comment: "Upcoming"))
-                    .font(.headline)
-                    .foregroundStyle(.primary)
                 if countdowns.isEmpty {
-                    Text(NSLocalizedString("widget.empty.message", comment: "Add a countdown to see it here."))
-                        .foregroundStyle(.secondary)
+                    VStack(spacing: 12) {
+                        Image(systemName: "calendar.badge.clock")
+                            .font(.system(size: 40))
+                            .foregroundStyle(.secondary)
+                        Text(NSLocalizedString("widget.select.countdown", comment: "Select a countdown"))
+                            .font(.headline)
+                            .multilineTextAlignment(.center)
+                        Text(NSLocalizedString("widget.select.hint", comment: "Long press to edit"))
+                            .font(.caption)
+                            .foregroundStyle(.tertiary)
+                            .multilineTextAlignment(.center)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
+                    Text(NSLocalizedString("widget.upcoming", comment: "Upcoming"))
+                        .font(.headline)
+                        .foregroundStyle(.primary)
                     ForEach(Array(countdowns.prefix(2))) { item in
                         HStack(alignment: .center, spacing: 12) {
                             VStack(alignment: .leading, spacing: 2) {
@@ -144,8 +185,8 @@ struct CountdownWidgetEntryView: View {
                             }
                         }
                     }
+                    Spacer()
                 }
-                Spacer()
             }
             .padding()
         }
@@ -154,12 +195,23 @@ struct CountdownWidgetEntryView: View {
     private func largeView(countdowns: [CountdownItem], referenceDate: Date) -> some View {
         widgetBackground {
             VStack(alignment: .leading, spacing: 12) {
-                Text(NSLocalizedString("widget.all", comment: "All Countdowns"))
-                    .font(.headline)
                 if countdowns.isEmpty {
-                    Text(NSLocalizedString("widget.empty.large", comment: "Add countdowns in the app to stay on track."))
-                        .foregroundStyle(.secondary)
+                    VStack(spacing: 12) {
+                        Image(systemName: "calendar.badge.clock")
+                            .font(.system(size: 48))
+                            .foregroundStyle(.secondary)
+                        Text(NSLocalizedString("widget.select.countdown", comment: "Select a countdown"))
+                            .font(.title3.weight(.semibold))
+                            .multilineTextAlignment(.center)
+                        Text(NSLocalizedString("widget.select.hint", comment: "Long press to edit"))
+                            .font(.subheadline)
+                            .foregroundStyle(.tertiary)
+                            .multilineTextAlignment(.center)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
+                    Text(NSLocalizedString("widget.all", comment: "All Countdowns"))
+                        .font(.headline)
                     ForEach(Array(countdowns.prefix(4))) { item in
                         HStack(alignment: .center, spacing: 12) {
                             VStack(alignment: .leading, spacing: 2) {
@@ -184,8 +236,8 @@ struct CountdownWidgetEntryView: View {
                         }
                         .padding(.vertical, 4)
                     }
+                    Spacer()
                 }
-                Spacer()
             }
             .padding()
         }
@@ -228,11 +280,15 @@ struct CountdownWidget: Widget {
     let kind: String = "CountdownWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
+        AppIntentConfiguration(
+            kind: kind,
+            intent: CountdownSelectionIntent.self,
+            provider: Provider()
+        ) { entry in
             CountdownWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Countdown")
-        .description("Keep track of your upcoming days with minimalist widgets.")
+        .description("Track a specific countdown on your home screen.")
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }

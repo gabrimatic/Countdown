@@ -26,6 +26,9 @@
 		34CF205C2EB95E2800037D93 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34CF20492EB95E2800037D93 /* Localizable.strings */; };
 		34CF205D2EB95E2800037D93 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34CF20462EB95E2800037D93 /* Localizable.strings */; };
 		34CF205E2EB95E2800037D93 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34CF20512EB95E2800037D93 /* Localizable.strings */; };
+		34CF20612EB9674F00037D93 /* CountdownListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CF205F2EB9674F00037D93 /* CountdownListView.swift */; };
+		34CF20632EB9677B00037D93 /* CountdownSelectionIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CF20622EB9677B00037D93 /* CountdownSelectionIntent.swift */; };
+		34CF20642EB9677B00037D93 /* CountdownSelectionIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CF20622EB9677B00037D93 /* CountdownSelectionIntent.swift */; };
 		AA0000000000000000003001 /* CountdownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000001001 /* CountdownApp.swift */; };
 		AA0000000000000000003002 /* CountdownItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000001002 /* CountdownItem.swift */; };
 		AA0000000000000000003003 /* CountdownStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000001003 /* CountdownStore.swift */; };
@@ -81,6 +84,8 @@
 		34CF204B2EB95E2800037D93 /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = Localizable.strings; sourceTree = "<group>"; };
 		34CF204E2EB95E2800037D93 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		34CF20502EB95E2800037D93 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = Localizable.strings; sourceTree = "<group>"; };
+		34CF205F2EB9674F00037D93 /* CountdownListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownListView.swift; sourceTree = "<group>"; };
+		34CF20622EB9677B00037D93 /* CountdownSelectionIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownSelectionIntent.swift; sourceTree = "<group>"; };
 		AA0000000000000000001001 /* CountdownApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownApp.swift; sourceTree = "<group>"; };
 		AA0000000000000000001002 /* CountdownItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownItem.swift; sourceTree = "<group>"; };
 		AA0000000000000000001003 /* CountdownStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownStore.swift; sourceTree = "<group>"; };
@@ -194,6 +199,7 @@
 		AA0000000000000000002101 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				34CF20622EB9677B00037D93 /* CountdownSelectionIntent.swift */,
 				AA0000000000000000001002 /* CountdownItem.swift */,
 				AA0000000000000000001016 /* AppSettings.swift */,
 			);
@@ -203,6 +209,7 @@
 		AA0000000000000000002102 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				34CF205F2EB9674F00037D93 /* CountdownListView.swift */,
 				34CF20402EB956B700037D93 /* SettingsView.swift */,
 				34CF20372EB951E700037D93 /* CountdownCard.swift */,
 				34CF20382EB951E700037D93 /* GlassChrome.swift */,
@@ -429,6 +436,8 @@
 				AA0000000000000000003008 /* SharedCountdownRepository.swift in Sources */,
 				AA0000000000000000003015 /* CountdownStore+Preview.swift in Sources */,
 				AA0000000000000000003016 /* LaunchScreenView.swift in Sources */,
+				34CF20642EB9677B00037D93 /* CountdownSelectionIntent.swift in Sources */,
+				34CF20612EB9674F00037D93 /* CountdownListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +447,7 @@
 			files = (
 				AA0000000000000000003011 /* CountdownWidget.swift in Sources */,
 				34CF203B2EB951E700037D93 /* GlassChrome.swift in Sources */,
+				34CF20632EB9677B00037D93 /* CountdownSelectionIntent.swift in Sources */,
 				34CF203C2EB951E700037D93 /* CountdownCard.swift in Sources */,
 				34CF203E2EB9523D00037D93 /* GlassSettings.swift in Sources */,
 				AA0000000000000000003012 /* CountdownItem.swift in Sources */,
@@ -545,7 +555,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -598,7 +608,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -616,7 +626,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7LZDB2TKF7;
 				INFOPLIST_FILE = Countdown/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -638,7 +648,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7LZDB2TKF7;
 				INFOPLIST_FILE = Countdown/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -657,9 +667,9 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 7LZDB2TKF7;
 				INFOPLIST_FILE = CountdownWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -679,9 +689,9 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 7LZDB2TKF7;
 				INFOPLIST_FILE = CountdownWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
