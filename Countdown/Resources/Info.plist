@@ -48,5 +48,12 @@
         <string>UIInterfaceOrientationPortrait</string>
         <string>UIInterfaceOrientationPortraitUpsideDown</string>
     </array>
+    <key>UILaunchScreen</key>
+    <dict>
+        <key>UIColorName</key>
+        <string>AccentColor</string>
+        <key>UIImageRespectsSafeAreaInsets</key>
+        <true/>
+    </dict>
 </dict>
 </plist>
