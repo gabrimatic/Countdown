@@ -1,7 +1,7 @@
 import Foundation
 
 enum SharedCountdownRepository {
-    static let suiteName = "group.com.example.countdown"
+    static let suiteName = "group.info.gabrimatic.countdown"
     static let storageKey = "countdowns"
 
     static func loadCountdowns() -> [CountdownItem] {

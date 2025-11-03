@@ -82,7 +82,7 @@ struct EditCountdownView_Previews: PreviewProvider {
     @MainActor static var previews: some View {
         NavigationStack {
             EditCountdownView(item: CountdownItem(title: "Test", date: Date().addingTimeInterval(86400 * 4)))
-                .environmentObject(.preview)
+                .environmentObject(CountdownStore.preview)
         }
     }
 }

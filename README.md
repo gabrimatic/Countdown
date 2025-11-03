@@ -17,8 +17,8 @@ A minimalist SwiftUI iOS countdown application with WidgetKit support. Track imp
 
 ## Getting Started
 1. Open `Countdown.xcodeproj` in Xcode 15 or later.
-2. Update the bundle identifiers (`com.example.Countdown` and `com.example.Countdown.widget`) to match your team.
-3. Configure the app group identifier (`group.com.example.countdown`) in the Signing & Capabilities tab for both the app and widget targets, or change the constant in `SharedCountdownRepository.swift` to match your group.
+2. Update the bundle identifiers (`info.gabrimatic.Countdown` and `info.gabrimatic.Countdown.widget`) to match your team if they differ.
+3. Configure the app group identifier (`group.info.gabrimatic.countdown`) in the Signing & Capabilities tab for both the app and widget targets, or change the constant in `SharedCountdownRepository.swift` to match your group.
 4. Build and run on an iOS device or simulator (iOS 16+).
 5. After adding countdowns, add the widget to your Home Screen to see live updates.
 

@@ -23,10 +23,10 @@ final class CountdownStore: ObservableObject {
 
     init(
         userDefaults: UserDefaults = UserDefaults(suiteName: SharedCountdownRepository.suiteName) ?? .standard,
-        widgetReloader: @escaping () -> Void = CountdownStore.makeWidgetReloader()
+        widgetReloader: (() -> Void)? = nil
     ) {
         self.userDefaults = userDefaults
-        self.widgetReloader = widgetReloader
+        self.widgetReloader = widgetReloader ?? CountdownStore.makeWidgetReloader()
         load()
     }
 

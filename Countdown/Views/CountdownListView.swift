@@ -58,6 +58,6 @@ struct CountdownListView: View {
 struct CountdownListView_Previews: PreviewProvider {
     @MainActor static var previews: some View {
         CountdownListView()
-            .environmentObject(.preview)
+            .environmentObject(CountdownStore.preview)
     }
 }
