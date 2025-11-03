@@ -12,7 +12,7 @@ struct LaunchScreenView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 150, height: 150)
-                .cornerRadius(30)
+                .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
         }
     }
 }

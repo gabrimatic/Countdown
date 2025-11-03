@@ -56,11 +56,10 @@ struct EditCountdownView: View {
                 .disabled(title.trimmingCharacters(in: .whitespaces).isEmpty)
             }
         }
-        .onAppear {
+        .task {
             if existingItem == nil {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    isTitleFocused = true
-                }
+                try? await Task.sleep(for: .milliseconds(100))
+                isTitleFocused = true
             }
         }
     }

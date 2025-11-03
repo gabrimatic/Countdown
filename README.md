@@ -1,25 +1,154 @@
 # Countdown
 
-A minimalist SwiftUI iOS countdown application with WidgetKit support. Track important dates offline, manage multiple countdowns, and surface them on your Home Screen with automatically refreshing widgets.
+A minimalist iOS countdown application built with SwiftUI. Track important dates with beautiful design, widget support, and full offline functionality.
+
+![iOS Version](https://img.shields.io/badge/iOS-16.0+-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 ## Features
-- Add, edit, and delete unlimited countdowns
-- Day-based countdowns that automatically normalize to midnight and communicate status (today, overdue, upcoming)
-- Data persistence via shared `UserDefaults` (no network connection required)
-- Widget bundle with small, medium, and large layouts that surface relative timing and completion details
-- Automatic widget refresh every day and whenever data changes in the app
-- Lightweight SwiftUI interface focused on clarity and typography
+
+- 📱 **Create & Manage Countdowns** - Add unlimited countdowns with title, date, and notes
+- 🎯 **Smart Status Labels** - See whether events are today, upcoming, or overdue with relative formatting
+- 📊 **Widget Bundle** - Small, Medium, and Large widget sizes with live updates
+- 🌐 **5 Languages** - English, German, Turkish, Spanish, and Farsi (with RTL support)
+- 🎨 **Modern Design** - Beautiful card-based interface with Liquid Glass effects
+- 🔒 **Privacy-First** - All data stored locally on your device
+- ♿ **Fully Accessible** - VoiceOver support and accessibility settings
+
+## Quick Start
+
+### Prerequisites
+- Xcode 15+
+- iOS 16.0+
+
+### Setup
+
+1. **Clone & Open**
+   ```bash
+   git clone https://github.com/gabrimatic/countdown.git
+   cd countdown
+   open Countdown.xcodeproj
+   ```
+
+2. **Configure Bundle Identifiers** (for device deployment)
+   - Select **Countdown** target → **Signing & Capabilities**
+   - Update bundle identifiers if needed:
+     - App: `info.gabrimatic.Countdown`
+     - Widget: `info.gabrimatic.Countdown.widget`
+
+3. **Build & Run**
+   ```bash
+   ⌘R  # in Xcode, or use command line:
+   xcodebuild -scheme Countdown -destination 'platform=iOS Simulator,name=iPhone 15' build
+   ```
+
+4. **Add Widget**
+   - Long-press Home Screen → "+" → Search "Countdown"
+   - Choose size and add
+   - Widget syncs automatically with app
+
+## Architecture
+
+**MVVM Pattern** with clean separation:
+- **Models** - Data structures with business logic
+- **Services** - State management & persistence
+- **Views** - SwiftUI components (presentation only)
+
+**Data Storage** - UserDefaults via app group (no cloud needed)
+
+## Build Commands
+
+```bash
+# Build app
+xcodebuild -scheme Countdown -destination 'platform=iOS Simulator,name=iPhone 15' build
+
+# Build widget
+xcodebuild -scheme CountdownWidget -destination 'platform=iOS Simulator,name=iPhone 15' build
+
+# Clean
+xcodebuild clean
+```
 
 ## Project Structure
-- `Countdown.xcodeproj` – Xcode project with app and widget targets
-- `Countdown/` – App sources, models, services, and resources
-- `CountdownWidget/` – Widget extension sources and Info.plist
 
-## Getting Started
-1. Open `Countdown.xcodeproj` in Xcode 15 or later.
-2. Update the bundle identifiers (`info.gabrimatic.Countdown` and `info.gabrimatic.Countdown.widget`) to match your team if they differ.
-3. Configure the app group identifier (`group.info.gabrimatic.countdown`) in the Signing & Capabilities tab for both the app and widget targets, or change the constant in `SharedCountdownRepository.swift` to match your group.
-4. Build and run on an iOS device or simulator (iOS 16+).
-5. After adding countdowns, add the widget to your Home Screen to see live updates.
+```
+Countdown/
+├── Models/              # Data structures
+├── Services/            # State management & persistence
+├── Views/               # UI components
+├── Utilities/           # Helpers & design system
+└── Resources/           # Assets, localization
+CountdownWidget/         # Widget extension
+```
 
-All functionality is available offline; the app stores data locally using shared defaults so the widget can stay in sync automatically. Widgets present rich relative timing strings so you know whether events are upcoming, due today, or already completed at a glance.
+**Total:** 17 Swift files, ~1,085 lines of code
+
+## Key Technologies
+
+- **SwiftUI** - Modern declarative UI
+- **WidgetKit** - Home screen widgets
+- **UserDefaults** - Local data persistence
+- **Localization** - 5 languages with RTL support
+
+## Customization
+
+### App Group ID
+Edit `Utilities/SharedCountdownRepository.swift`:
+```swift
+let appGroupID = "group.info.gabrimatic.countdown"
+```
+
+### Theme
+Settings automatically persist in the app:
+- System (follows device)
+- Light mode
+- Dark mode
+
+### Languages
+Automatic device language detection. Currently supports:
+- 🇬🇧 English
+- 🇩🇪 German
+- 🇹🇷 Turkish
+- 🇪🇸 Spanish
+- 🇮🇷 Farsi (RTL)
+
+## Troubleshooting
+
+### Widget not updating
+- Verify app group ID matches in both targets
+- Clean build: `xcodebuild clean`
+- Force restart simulator: `xcrun simctl shutdown all && xcrun simctl erase all`
+
+### Bundle identifier errors
+- Check both targets have correct identifiers:
+  - App: `info.gabrimatic.Countdown`
+  - Widget: `info.gabrimatic.Countdown.widget`
+
+### Localization not working
+- Rebuild project: `xcodebuild clean && xcodebuild build`
+- Verify `.lproj` folders added to both targets
+
+## Contributing
+
+1. Fork the repository
+2. Create feature branch: `git checkout -b feature/my-feature`
+3. Make changes and test
+4. Commit: `git commit -m "feat: description"`
+5. Push and open Pull Request
+
+**Code style:**
+- 4 spaces indentation
+- camelCase for functions/properties, PascalCase for types
+- Localize all user-facing strings with `NSLocalizedString()`
+
+## License
+
+MIT License - See LICENSE file
+
+## Attribution
+
+**Developer**: [gabrimatic.info](https://gabrimatic.info)
+
+---
+
+**Built with:** SwiftUI + WidgetKit | **iOS 16.0+** | **November 2025**

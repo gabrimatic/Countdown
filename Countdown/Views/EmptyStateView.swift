@@ -3,7 +3,7 @@ import SwiftUI
 struct EmptyStateView: View {
     var body: some View {
         VStack(spacing: 16) {
-            Image(systemName: "hourglass")
+            Image(systemName: "calendar.badge.plus")
                 .font(.system(size: 48, weight: .regular))
                 .foregroundStyle(.secondary)
             Text(NSLocalizedString("countdown.list.empty.title", comment: "Empty state title"))
