@@ -25,7 +25,12 @@ struct Provider: AppIntentTimelineProvider {
         let countdowns = loadCountdowns(for: configuration)
         let now = Date()
         let entries = makeEntries(countdowns: countdowns, configuration: configuration, startingAt: now)
-        let refreshDate = entries.last?.date.addingTimeInterval(3600) ?? now.addingTimeInterval(3600)
+
+        // Refresh at next midnight instead of hourly for efficiency
+        let calendar = Calendar.current
+        let tomorrow = calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: now))!
+        let refreshDate = entries.last?.date ?? tomorrow
+
         return Timeline(entries: entries, policy: .after(refreshDate))
     }
 
@@ -65,18 +70,27 @@ struct Provider: AppIntentTimelineProvider {
         let calendar = Calendar.current
         let startOfToday = calendar.startOfDay(for: now)
         let maxDays = 30  // Extended from 14 to 30 days for better reliability
+
+        // Ensure nextMidnight is in the future
         guard var nextMidnight = calendar.date(byAdding: .day, value: 1, to: startOfToday) else {
             return entries
         }
 
-        for _ in 0..<maxDays {
-            if nextMidnight <= now {
-                guard let following = calendar.date(byAdding: .day, value: 1, to: nextMidnight) else { break }
-                nextMidnight = following
-                continue
+        // Edge case protection: if nextMidnight is somehow not in the future, advance it
+        while nextMidnight <= now {
+            guard let following = calendar.date(byAdding: .day, value: 1, to: nextMidnight) else {
+                return entries
             }
+            nextMidnight = following
+        }
+
+        // Generate entries for next 30 midnights
+        for _ in 0..<maxDays {
             entries.append(CountdownEntry(date: nextMidnight, countdowns: countdowns, configuration: configuration))
-            guard let following = calendar.date(byAdding: .day, value: 1, to: nextMidnight) else { break }
+
+            guard let following = calendar.date(byAdding: .day, value: 1, to: nextMidnight) else {
+                break
+            }
             nextMidnight = following
         }
 
@@ -87,11 +101,14 @@ struct Provider: AppIntentTimelineProvider {
 struct CountdownWidgetEntryView: View {
     var entry: Provider.Entry
     @Environment(\.widgetFamily) private var family
+    @Environment(\.widgetRenderingMode) private var renderingMode // iOS 26+ Liquid Glass rendering mode support
 
     var body: some View {
         let referenceDate = entry.date
         let prioritized = Self.prioritizedCountdowns(entry.countdowns, referenceDate: referenceDate)
         return widgetView(for: prioritized, referenceDate: referenceDate)
+            // Note: WidgetKit automatically adapts to Clear/Tinted modes using system colors
+            // No manual glassEffect needed - follows Liquid Glass best practices
     }
 
     @ViewBuilder
@@ -250,17 +267,11 @@ struct CountdownWidgetEntryView: View {
 
     @ViewBuilder
     private func widgetBackground<Content: View>(@ViewBuilder content: () -> Content) -> some View {
-        if #available(iOSApplicationExtension 17.0, *) {
-            content()
-                .containerBackground(for: .widget) {
-                    Color(.systemBackground)
-                }
-        } else {
-            ZStack {
+        // iOS 17+ API (minimum deployment target is iOS 17)
+        content()
+            .containerBackground(for: .widget) {
                 Color(.systemBackground)
-                content()
             }
-        }
     }
 
     private static func prioritizedCountdowns(_ countdowns: [CountdownItem], referenceDate: Date) -> [CountdownItem] {

@@ -6,17 +6,20 @@ struct CountdownItem: Identifiable, Codable, Equatable {
     var date: Date
     var notes: String
 
+    // Static calendar to avoid repeated lookups
+    private static let calendar = Calendar.current
+
     init(id: UUID = UUID(), title: String, date: Date, notes: String = "") {
         self.id = id
         self.title = title
-        self.date = Calendar.current.startOfDay(for: date)
+        self.date = Self.calendar.startOfDay(for: date)
         self.notes = notes
     }
 
     /// The number of whole days between the supplied reference date and the countdown date.
     /// Positive values indicate future dates, negative values indicate past dates.
     func daysRemaining(relativeTo referenceDate: Date) -> Int {
-        let calendar = Calendar.current
+        let calendar = Self.calendar
         let start = calendar.startOfDay(for: referenceDate)
         let end = calendar.startOfDay(for: date)
         let components = calendar.dateComponents([.day], from: start, to: end)

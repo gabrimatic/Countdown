@@ -12,7 +12,7 @@ final class CountdownStore: ObservableObject {
                 isRestoring = false
                 return
             }
-            persist()
+            // Do not persist here - only on explicit user actions to avoid redundant operations
         }
     }
 
@@ -27,33 +27,40 @@ final class CountdownStore: ObservableObject {
     ) {
         self.userDefaults = userDefaults
         self.widgetReloader = widgetReloader ?? CountdownStore.makeWidgetReloader()
-        load()
+        // Do not call load() here - it will be called asynchronously after app launch
     }
 
     func add(_ item: CountdownItem) {
         countdowns.append(item)
         reorder()
+        persist()
     }
 
     func update(_ item: CountdownItem) {
         guard let index = countdowns.firstIndex(where: { $0.id == item.id }) else { return }
         countdowns[index] = item
         reorder()
+        persist()
     }
 
     func delete(_ indexSet: IndexSet) {
         countdowns.remove(atOffsets: indexSet)
+        persist()
     }
 
     func delete(_ item: CountdownItem) {
         countdowns.removeAll { $0.id == item.id }
+        persist()
     }
 
     func replaceAll(with items: [CountdownItem]) {
         countdowns = items.sorted(by: CountdownItem.displaySort(lhs:rhs:))
+        persist()
     }
 
-    private func load() {
+    /// Load countdowns from UserDefaults
+    /// Call this asynchronously after app launch to avoid blocking the main thread
+    func load() {
         guard let data = userDefaults.data(forKey: storageKey) else { return }
         do {
             let decoded = try JSONDecoder().decode([CountdownItem].self, from: data)
@@ -66,7 +73,8 @@ final class CountdownStore: ObservableObject {
 
     private func persist() {
         do {
-            let data = try JSONEncoder().encode(countdowns.sorted(by: CountdownItem.displaySort(lhs:rhs:)))
+            // Array is already sorted by reorder(), no need to sort again
+            let data = try JSONEncoder().encode(countdowns)
             userDefaults.set(data, forKey: storageKey)
             widgetReloader()
         } catch {

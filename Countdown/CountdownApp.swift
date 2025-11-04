@@ -20,11 +20,16 @@ struct CountdownApp: App {
                 }
             }
             .preferredColorScheme(settingsStore.effectiveColorScheme)
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    withAnimation(.easeOut(duration: 0.5)) {
-                        showLaunchScreen = false
-                    }
+            .task {
+                // Load data asynchronously to avoid blocking main thread during app launch
+                store.load()
+
+                // Keep launch screen visible for at least 0.5 seconds for smooth transition
+                try? await Task.sleep(nanoseconds: 500_000_000)
+
+                // Dismiss launch screen after loading completes
+                withAnimation(.easeOut(duration: 0.5)) {
+                    showLaunchScreen = false
                 }
             }
         }

@@ -28,14 +28,18 @@ struct CountdownEntity: AppEntity, Codable {
 
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "Countdown"
 
-    var displayRepresentation: DisplayRepresentation {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
+    // Static formatter to avoid creating new instances on every access
+    private static let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        return formatter
+    }()
 
+    var displayRepresentation: DisplayRepresentation {
         return DisplayRepresentation(
             title: "\(title)",
-            subtitle: "\(dateFormatter.string(from: date))"
+            subtitle: "\(Self.dateFormatter.string(from: date))"
         )
     }
 
